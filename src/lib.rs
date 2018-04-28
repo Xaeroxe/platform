@@ -108,6 +108,54 @@ pub trait Platform: Sized {
             self
         }
     }
+    #[inline(always)]
+    fn freebsd(self, _input: Self) -> Self {
+        #[cfg(target_os="freebsd")]
+        {
+            _input
+        }
+
+        #[cfg(not(target_os="freebsd"))]
+        {
+            self
+        }
+    }
+    #[inline(always)]
+    fn openbsd(self, _input: Self) -> Self {
+        #[cfg(target_os="openbsd")]
+        {
+            _input
+        }
+
+        #[cfg(not(target_os="openbsd"))]
+        {
+            self
+        }
+    }
+    #[inline(always)]
+    fn dragonfly(self, _input: Self) -> Self {
+        #[cfg(target_os="dragonfly")]
+        {
+            _input
+        }
+
+        #[cfg(not(target_os="dragonfly"))]
+        {
+            self
+        }
+    }
+    #[inline(always)]
+    fn netbsd(self, _input: Self) -> Self {
+        #[cfg(target_os="netbsd")]
+        {
+            _input
+        }
+
+        #[cfg(not(target_os="netbsd"))]
+        {
+            self
+        }
+    }
 }
 
 impl<T> Platform for T {}
