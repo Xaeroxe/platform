@@ -36,67 +36,23 @@
 //! }
 //! ```
 
+macro_rules! define_platform {
+    ($platform:ident, $name:tt) => {
+        #[inline(always)]
+        fn $platform(self, _input: Self) -> Self {
+            #[cfg(target_os=$name)]
+            {
+                _input
+            }
+            #[cfg(not(target_os=$name))]
+            {
+                self
+            }
+        }
+    };
+}
+
 pub trait Platform: Sized {
-    #[inline(always)]
-    fn ios(self, _input: Self) -> Self {
-        #[cfg(target_os = "ios")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "ios"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn android(self, _input: Self) -> Self {
-        #[cfg(target_os = "android")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "android"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn windows(self, _input: Self) -> Self {
-        #[cfg(target_os = "windows")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "windows"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn macos(self, _input: Self) -> Self {
-        #[cfg(target_os = "macos")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "macos"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn linux(self, _input: Self) -> Self {
-        #[cfg(target_os = "linux")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "linux"))]
-        {
-            self
-        }
-    }
     #[inline(always)]
     fn wasm32(self, _input: Self) -> Self {
         #[cfg(target_arch = "wasm32")]
@@ -109,66 +65,16 @@ pub trait Platform: Sized {
             self
         }
     }
-    #[inline(always)]
-    fn emscripten(self, _input: Self) -> Self {
-        #[cfg(target_os = "emscripten")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "emscripten"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn freebsd(self, _input: Self) -> Self {
-        #[cfg(target_os = "freebsd")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "freebsd"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn openbsd(self, _input: Self) -> Self {
-        #[cfg(target_os = "openbsd")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "openbsd"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn dragonfly(self, _input: Self) -> Self {
-        #[cfg(target_os = "dragonfly")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "dragonfly"))]
-        {
-            self
-        }
-    }
-    #[inline(always)]
-    fn netbsd(self, _input: Self) -> Self {
-        #[cfg(target_os = "netbsd")]
-        {
-            _input
-        }
-
-        #[cfg(not(target_os = "netbsd"))]
-        {
-            self
-        }
-    }
+    define_platform!(ios, "ios");
+    define_platform!(android, "android");
+    define_platform!(windows, "windows");
+    define_platform!(macos, "macos");
+    define_platform!(linux, "linux");
+    define_platform!(emscripten, "emscripten");
+    define_platform!(freebsd, "freebsd");
+    define_platform!(openbsd, "openbsd");
+    define_platform!(dragonfly, "dragonfly");
+    define_platform!(netbsd, "netbsd");
 }
 
 impl<T> Platform for T {}
