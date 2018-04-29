@@ -30,6 +30,7 @@
 //!         .windows("windows")
 //!         .macos("macos")
 //!         .linux("linux")
+//!         .wasm32("wasm32")
 //!         .emscripten("emscripten")
 //!     );
 //! }
@@ -95,6 +96,18 @@ pub trait Platform: Sized {
         {
             self
         }
+    }
+    #[inline(always)]
+    fn wasm32(self, _input: Self) -> Self {
+        #[cfg(target_arch="wasm32")]
+            {
+                _input
+            }
+
+        #[cfg(not(target_arch="wasm32"))]
+            {
+                self
+            }
     }
     #[inline(always)]
     fn emscripten(self, _input: Self) -> Self {

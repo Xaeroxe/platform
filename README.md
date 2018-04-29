@@ -20,6 +20,7 @@ fn main() {
         .windows("windows")
         .macos("macos")
         .linux("linux")
+        .wasm32("wasm32")
         .emscripten("emscripten")
     );
 }
