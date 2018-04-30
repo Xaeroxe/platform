@@ -33,6 +33,21 @@
 //!         .wasm32("wasm32")
 //!         .emscripten("emscripten")
 //!     );
+//!
+//!     // Alternatively, let's pretend the arguments are non-trivial to evaluate.
+//!     // We can also use this on function pointers so long as all the variants can 
+//!     // coerce to the same function pointer type.
+//!     println!("Hello from {}!",
+//!         ((|| String::from("unknown")) as fn() -> String)
+//!         .ios(|| String::from("ios"))
+//!         .android(|| String::from("android"))
+//!         .windows(|| String::from("windows"))
+//!         .macos(|| String::from("macos"))
+//!         .linux(|| String::from("linux"))
+//!         .wasm32(|| String::from("wasm32"))
+//!         .emscripten(|| String::from("emscripten"))
+//!         ()
+//!     );
 //! }
 //! ```
 
@@ -75,6 +90,7 @@ pub trait Platform: Sized {
     define_platform!(openbsd, "openbsd");
     define_platform!(dragonfly, "dragonfly");
     define_platform!(netbsd, "netbsd");
+    define_platform!(redox, "redox");
 }
 
 impl<T> Platform for T {}

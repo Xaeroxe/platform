@@ -1,6 +1,6 @@
 [package]
 name = "platform"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["Jacob Kiesel <kieseljake@gmail.com>"]
 repository = "https://github.com/Xaeroxe/platform"
 description = "Provides an easy way to inline selection of input parameters based on the platform being targeted."
