@@ -1,6 +1,4 @@
-[![Crates listing](https://img.shields.io/crates/v/platform.svg)](https://crates.io/crates/platform)
-
-# platform crate
+# platform crate [![Crates listing](https://img.shields.io/crates/v/platform.svg)](https://crates.io/crates/platform) [![Travis](https://travis-ci.com/Xaeroxe/platform.svg?branch=master)](https://travis-ci.com/Xaeroxe/platform)
 
 This crate provides an easy way to inline selection of input parameters
 based on the platform being targeted.  Can be used on any `Sized` type.
