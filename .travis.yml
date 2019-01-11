@@ -10,6 +10,14 @@ matrix:
 cache: cargo
 
 script:
+  - |
+      if [ ${TRAVIS_RUST_VERSION} == "stable" ]
+      then
+        export RUSTFLAGS="-D warnings"
+        rustup component add rustfmt
+        cargo fmt --version
+        cargo fmt --all -- --check
+      fi
   - cargo build --verbose --all
   - cargo test --verbose --all
 after_success:
