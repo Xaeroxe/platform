@@ -35,7 +35,7 @@
 //!     );
 //!
 //!     // Alternatively, let's pretend the arguments are non-trivial to evaluate.
-//!     // We can also use this on function pointers so long as all the variants can 
+//!     // We can also use this on function pointers so long as all the variants can
 //!     // coerce to the same function pointer type.
 //!     println!("Hello from {}!",
 //!         ((|| String::from("unknown")) as fn() -> String)
